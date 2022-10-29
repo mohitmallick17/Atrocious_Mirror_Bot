@@ -53,6 +53,7 @@ class _BotCommands:
         self.LeechSetCommand = f'leechset{CMD_INDEX}'
         self.SetThumbCommand = f'setthumb{CMD_INDEX}'
         self.BtSelectCommand = f'btsel{CMD_INDEX}'
+        self.SleepCommand = f'sleep{CMD_INDEX}'
         self.RssListCommand = getCommand('RSSLIST_CMD', f'rsslist{CMD_INDEX}')
         self.RssGetCommand = getCommand('RSSGET_CMD', f'rssget{CMD_INDEX}')
         self.RssSubCommand = getCommand('RSSSUB_CMD', f'rsssub{CMD_INDEX}')
