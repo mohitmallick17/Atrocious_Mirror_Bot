@@ -51,7 +51,7 @@ def editMessage(text, message, reply_markup=None):
 def sendRss(text: str, bot):
     if rss_session is None:
         try:
-            return bot.sendMessage(config_dict['RSS_CHAT_ID'], text, parse_mode='HTML', disable_web_page_preview=True)
+            return bot.sendMessage(RSS_CHAT_ID, text, parse_mode='HTML', disable_web_page_preview=True)
         except RetryAfter as r:
             LOGGER.warning(str(r))
             sleep(r.retry_after * 1.5)
@@ -62,7 +62,7 @@ def sendRss(text: str, bot):
     else:
         try:
             with rss_session:
-                return rss_session.send_message(config_dict['RSS_CHAT_ID'], text, disable_web_page_preview=True)
+                return rss_session.send_message(RSS_CHAT_ID, text, disable_web_page_preview=True)
         except FloodWait as e:
             LOGGER.warning(str(e))
             sleep(e.value * 1.5)
@@ -99,8 +99,8 @@ def sendFile(bot, message, name, caption=""):
         return
 
 def auto_delete_message(bot, cmd_message, bot_message):
-    if config_dict['AUTO_DELETE_MESSAGE_DURATION'] != -1:
-        sleep(config_dict['AUTO_DELETE_MESSAGE_DURATION'])
+    if AUTO_DELETE_MESSAGE_DURATION != -1:
+        sleep(AUTO_DELETE_MESSAGE_DURATION)
         deleteMessage(bot, cmd_message)
         deleteMessage(bot, bot_message)
 
@@ -151,4 +151,4 @@ def sendStatusMessage(msg, bot):
             message = sendMarkup(progress, bot, msg, buttons)
         status_reply_dict[msg.chat.id] = [message, time()]
         if not Interval:
-            Interval.append(setInterval(config_dict['STATUS_UPDATE_INTERVAL'], update_all_messages))
+            Interval.append(setInterval(STATUS_UPDATE_INTERVAL, update_all_messages))
