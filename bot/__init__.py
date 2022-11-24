@@ -148,7 +148,7 @@ except:
     pass
 try:
     BOT_TOKEN = getConfig('BOT_TOKEN')
-    parent_id = getConfig('GDRIVE_FOLDER_ID')
+    GDRIVE_FOLDER_ID = getConfig('GDRIVE_FOLDER_ID')
     DOWNLOAD_DIR = getConfig('DOWNLOAD_DIR')
     if not DOWNLOAD_DIR.endswith("/"):
         DOWNLOAD_DIR = DOWNLOAD_DIR + '/'
@@ -466,7 +466,7 @@ except:
     ZIP_UNZIP_LIMIT = None
 
 DRIVES_NAMES.append("Main")
-DRIVES_IDS.append(parent_id)
+DRIVES_IDS.append(GDRIVE_FOLDER_ID)
 if ospath.exists('drive_folder'):
     with open('drive_folder', 'r+') as f:
         lines = f.readlines()
